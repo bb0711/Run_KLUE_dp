@@ -5,9 +5,9 @@ It uses KLUE-DP dataset and dependency parser model with mecab-ko POS(Part-Of-Sp
 이는 KLUE-DP 모델을 이용한 한글 구문 분석(Dependency parsing)을 쉽게 하기 위한 코드입니다.   
 최근에 발표된 KLUE-DP 벤치마크 데이터셋과 KLUE-DP 논문에서 제안하는 모델을 이용하였으며, 문장 단위의 txt 파일만 입력값으로 넣으면 쉽게 사용할 수 있도록 일부 코드를 수정하였습니다.
 
-+ 기존 KLUE-DP의 모델은 추가 feature로 전문가가 직접 annotate한 input data의 형태소 분석 및 품사 태깅 값을 사용하는데, 일반적으로 사용할 수 있도록 mecab-ko 모델을 이용하여 POS tagging 결과를 추가한 입력값을 받도록 하였습니다.
-
-+ 기존 KLUE-DP baseline model(https://aistages-prod-server-public.s3.amazonaws.com/app/Competitions/000071/data/klue-dp_code.tar.gz) 이용시, input의 head값을 입력값으로 받는 부분을 수정하였습니다.
++ 모델은 KLUE-DP benchmark 의 train data로 학습한 결과이며 **따로 학습시킬 필요가 없습니다!**
++ 기존 KLUE-DP의 모델은 추가 feature로 전문가가 직접 annotate한 input data의 형태소 분석 및 품사 태깅 값을 사용합니다. 따라서 일반적으로 사용할 수 있도록 **mecab-ko 모델을 이용하여 POS tagging 결과를 추가한 입력값**을 받도록 하였습니다.
++ 기존 KLUE-DP baseline model 이용시, input의 head값을 입력값으로 받는 부분을 수정하였습니다.
 
 
 
@@ -120,6 +120,7 @@ bb0711@kaist.ac.kr
 다음과 같은 open source code를 이용하였습니다.
 - KLUE benchmark: https://github.com/KLUE-benchmark/KLUE
 - KLUE-DP dataset & model:  https://klue-benchmark.com/tasks/71/overview/copyright
+- KLUE-DP baseline model: https://aistages-prod-server-public.s3.amazonaws.com/app/Competitions/000071/data/klue-dp_code.tar.gz
 - mecab-ko : https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/
 
 ## License
