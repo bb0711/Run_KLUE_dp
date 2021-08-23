@@ -2,10 +2,15 @@
 This code is for running Korean dependency parser using SOTA model and dataset.
 It uses KLUE-DP dataset and dependency parser model with mecab-ko POS(Part-Of-Speech) tagging model.
 
-이는 KLUE-DP 모델을 이용한 한글 구문 분석(Dependency parsing)을 쉽게 하기 위한 코드입니다.   
-최근에 발표된 KLUE-DP 벤치마크 데이터셋과 KLUE-DP 논문에서 제안하는 모델을 이용하였으며, 문장 단위의 txt 파일만 입력값으로 넣으면 쉽게 사용할 수 있도록 일부 코드를 수정하였습니다.
+이 코드는 KLUE-DP 모델을 이용한 한글 구문 분석(Dependency parsing)을 쉽게 하기 위한 코드입니다.   
 
-+ 모델은 KLUE-DP benchmark 의 train data로 학습한 결과이며 **따로 학습시킬 필요가 없습니다!**
+KLUE는 2021년 한글 NLP의 발전을 위해 공개된 한글 benchmark dataset으로 동시에 이를 이용해 학습한 KLUE-BERT, KLUE-RoBERTa 를 기반으로 하는 pretrained language model(PLM) 과 총 8개의 nlp tasks를 해결할 수 있는 각각의 dataset과 model을 공개하였습니다.   
+
+KLUE에서 코드를 공개하였으나, 아무나 모델을 학습시키고 구문 분석 결과를 사용하기는 어렵다고 생각되어, 공개된 여러 오픈 소스들을 일부 수정하고 결합하여, **python을 이용해 누구나 쉽게 최신 한글 모델을 이용한 한글 구문 분석을 할 수 있도록 만든 코드** 입니다.
+
+KLUE-DP 벤치마크 데이터셋과 KLUE-DP 논문에서 제안하는 모델을 이용하였으며, 문장 단위의 txt 파일만 입력값으로 넣으면 쉽게 사용할 수 있도록 일부 코드를 수정하였습니다.
+
++ 모델은 KLUE-RoBERTa-base 모델을 기반으로 KLUE-DP benchmark 의 train data로 학습한 결과이며 **따로 학습시킬 필요가 없습니다!**
 + 기존 KLUE-DP의 모델은 추가 feature로 전문가가 직접 annotate한 input data의 형태소 분석 및 품사 태깅 값을 사용합니다. 따라서 일반적으로 사용할 수 있도록 **mecab-ko 모델을 이용하여 POS tagging 결과를 추가한 입력값**을 받도록 하였습니다.
 + 기존 KLUE-DP baseline model 이용시, input의 head값을 입력값으로 받는 부분을 수정하였습니다.
 
