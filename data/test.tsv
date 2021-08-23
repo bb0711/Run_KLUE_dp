@@ -1,0 +1,25 @@
+## 칼럼명 : INDEX	WORD_FORM	LEMMA	POS	HEAD	DEPREL
+## klue-dp-v1_dev_00000_wikitree	'K팝스타3’ 유희열이 홍정희의 탈락에 눈물을 흘렸다.
+1	'K팝스타3’	' K 팝스타 3 ’	SS+SL+NNP+SN+SS	0	NP
+2	유희열이	유희열 이	NNP+JKS	0	NP_SBJ
+3	홍정희의	홍정희 의	NNP+JKG	0	NP_MOD
+4	탈락에	탈락 에	NNG+JKB	0	NP_AJT
+5	눈물을	눈물 을	NNG+JKO	0	NP_OBJ
+6	흘렸다.	흘리 었 다 .	VV+EP+EF+SF	0	VP
+
+## klue-dp-v1_dev_00001_wikitree	재판부는 검찰의 공정한 수사에 대한 신뢰가 깨져 버려 최씨와 김씨가 정신적 피해를 봤다는 점을 인정했다.
+1	재판부는	재판부 는	NNG+JX	1	NP_SBJ
+2	검찰의	검찰 의	NNG+JKG	0	NP_MOD
+3	공정한	공정 하 ㄴ	NNG+XSA+ETM	2	VP_MOD
+4	수사에	수사 에	NNG+JKB	1	NP_AJT
+5	대한	대하 ㄴ	VV+ETM	1	VP_MOD
+6	신뢰가	신뢰 가	NNG+JKS	1	NP_SBJ
+7	깨져	깨지 어	VV+EC	1	VP
+8	버려	버리 어	VX+EC	1	VP
+9	최씨와	최 씨 와	NNP+NNB+JC	1	NP_CNJ
+10	김씨가	김 씨 가	NNP+NNB+JKS	3	NP_SBJ
+11	정신적	정신 적	NNG+XSN	1	DP
+12	피해를	피해 를	NNG+JKO	1	NP_OBJ
+13	봤다는	보 았 다는	VV+EP+ETM	0	VP_MOD
+14	점을	점 을	NNG+JKO	1	NP_OBJ
+15	인정했다.	인정 하 였 다 .	NNG+XSV+EP+EF+SF	0	VP
