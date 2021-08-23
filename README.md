@@ -21,7 +21,7 @@ It uses KLUE-DP dataset and dependency parser model with mecab-ko POS(Part-Of-Sp
    - window에서는 한 번의 명령어로 설치하기 어려우며, 아래의 링크를 참조해 설치.
    - https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/
 
-2. dp-model.bin 을 아래의 링크에서 다운받아 model 폴더 아래로 이동.
+2. dp-model.bin 을 아래의 링크에서 다운받아 run_klue_dp repository의 model 폴더 아래로 이동.
    - https://www.dropbox.com/s/n6zfylc69jr9c8f/dp-model.bin?dl=0
 
 3. ```python pos_anal_mecab filename.txt``` 실행
