@@ -16,65 +16,68 @@ It uses KLUE-DP dataset and dependency parser model with mecab-ko POS(Part-Of-Sp
 - mecab-ko : https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/
 
 ## Requirements
+- mecab-ko
+- torch==1.7.0
+- transformers==4.5.1
 
 ## 실행방법
 1. mecab-ko를 설치
-- window에서는 한 번의 명령어로 설치하기 어려우며, 아래의 링크를 참조해 설치.
-- https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/
+   - window에서는 한 번의 명령어로 설치하기 어려우며, 아래의 링크를 참조해 설치.
+   - https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/
 
 2. dp-model.bin 을 아래의 링크에서 다운받아 model 폴더 아래로 이동.
-- https://www.dropbox.com/s/n6zfylc69jr9c8f/dp-model.bin?dl=0
+   - https://www.dropbox.com/s/n6zfylc69jr9c8f/dp-model.bin?dl=0
 
 3. ```python pos_anal_mecab filename.txt``` 실행
- - filename 에 해당하는 파일은 txt format이며 문장당 \n로 구분되어 있어야 함.
- - output으로 동일한 filename의 tsv format의 파일 자동 생성(POS tagging 결과 포함)
- - pos tagging에는 mecab-ko를 이용하였으며, 주어진 KLUE-DP dataset에서의 정확도는 %임.
+    - filename 에 해당하는 파일은 txt format이며 문장당 \n로 구분되어 있어야 함.
+    - output으로 동일한 filename의 tsv format의 파일 자동 생성(POS tagging 결과 포함)
+    - pos tagging에는 mecab-ko를 이용하였으며, 주어진 KLUE-DP dataset에서의 정확도는 %임.
 
 4. 해당 filename.tsv 를 data 폴더 아래로 이동
 
 5. ```python inference.py --data_dir ./data --model_dir ./model --output_dir ./output --test_filename filename.tsv``` 실행
- - output/output.txt 로 결과물 저장.
- - output.txt에는 문장의 token 단위로 분석이 되어있으며, 문장 앞에는 ## 과 sentence_id가 붙어있다.
- - 여기서 token은 띄어쓰기 단위로 구분된 문장의 최소 단위인 어절을 의미한다.
- - 문장의 text 다음에는 한 줄당(\n 구분), 토큰 번호(1부터 시작), 토큰, mecab-ko를 통한 pos tagging 결과, head의 토큰 번호(root의 경우 0),DP-label(string type) 가 적혀있다. (\t 로 구분)
- - DP-label의 종류는 다음과 같다.
- - dp_labels = [
-        "NP",
-        "NP_AJT",
-        "VP",
-        "NP_SBJ",
-        "VP_MOD",
-        "NP_OBJ",
-        "AP",
-        "NP_CNJ",
-        "NP_MOD",
-        "VNP",
-        "DP",
-        "VP_AJT",
-        "VNP_MOD",
-        "NP_CMP",
-        "VP_SBJ",
-        "VP_CMP",
-        "VP_OBJ",
-        "VNP_CMP",
-        "AP_MOD",
-        "X_AJT",
-        "VP_CNJ",
-        "VNP_AJT",
-        "IP",
-        "X",
-        "X_SBJ",
-        "VNP_OBJ",
-        "VNP_SBJ",
-        "X_OBJ",
-        "AP_AJT",
-        "L",
-        "X_MOD",
-        "X_CNJ",
-        "VNP_CNJ",
-        "X_CMP",
-        "AP_CMP",
-        "AP_SBJ",
-        "R",
-        "NP_SVJ",
-    ]
+    - output/output.txt 로 결과물 저장.
+    - output.txt에는 문장의 token 단위로 분석이 되어있으며, 문장 앞에는 ## 과 sentence_id가 붙어있다.
+    - 여기서 token은 띄어쓰기 단위로 구분된 문장의 최소 단위인 어절을 의미한다.
+    - 문장의 text 다음에는 한 줄당(\n 구분), 토큰 번호(1부터 시작), 토큰, mecab-ko를 통한 pos tagging 결과, head의 토큰 번호(root의 경우 0),DP-label(string type) 가 적혀있다. (\t 로 구분)
+    - DP-label의 종류는 다음과 같다.
+    - dp_labels = [
+           "NP",
+           "NP_AJT",
+           "VP",
+           "NP_SBJ",
+           "VP_MOD",
+           "NP_OBJ",
+           "AP",
+           "NP_CNJ",
+           "NP_MOD",
+           "VNP",
+           "DP",
+           "VP_AJT",
+           "VNP_MOD",
+           "NP_CMP",
+           "VP_SBJ",
+           "VP_CMP",
+           "VP_OBJ",
+           "VNP_CMP",
+           "AP_MOD",
+           "X_AJT",
+           "VP_CNJ",
+           "VNP_AJT",
+           "IP",
+           "X",
+           "X_SBJ",
+           "VNP_OBJ",
+           "VNP_SBJ",
+           "X_OBJ",
+           "AP_AJT",
+           "L",
+           "X_MOD",
+           "X_CNJ",
+           "VNP_CNJ",
+           "X_CMP",
+           "AP_CMP",
+           "AP_SBJ",
+           "R",
+           "NP_SVJ",
+       ]
