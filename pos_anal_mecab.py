@@ -31,7 +31,6 @@ def pos_mecab_to_klue(pos,tag):
             for ex in mmn:
                 if ex in pos:
                     tag ='MMN'
-                    print(pos,tag)
                     return (pos, tag)
             tag = 'MMA'
     
@@ -62,7 +61,7 @@ def pos_to_token(poses, text):
                 tag_set +='+'+tag
                 tok = tok[len(pos):]
             else:
-                tup = pos_mecab_to_klue((pos,tag))
+                tup = pos_mecab_to_klue(pos,tag)
                 poses.insert(0,tup)
                 break
         poslist.append(pos_set.strip())
