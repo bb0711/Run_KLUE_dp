@@ -29,13 +29,15 @@ def pos_to_token(poses, text):
         tag_set = ''
         while len(poses)> 0:
             pos, tag = poses.pop(0)
-            if pos in tok:
+            if pos == tok[:len(pos)]:
                 pos_set +=' '+pos
                 tag_set +='+'+tag
+                tok = tok[len(pos):]
             else:
                 poses.insert(0,(pos,tag))
                 break
         poslist.append(pos_set.strip())
+        
         if tag_set[0]=='+':
             tag_set = tag_set[1:]
         taglist.append(tag_set)
@@ -65,9 +67,6 @@ def make_file(file):
         g.write('\n')
     f.close()
     g.close()
-
-
-# In[ ]:
 
 
 if __name__ == '__main__':
