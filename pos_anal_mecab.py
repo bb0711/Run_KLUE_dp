@@ -8,6 +8,34 @@ import MeCab
 import sys
 m = MeCab.Tagger()
 
+# 품사태깅(pos tagging) 결과를 mecab-ko 품사 태깅에서 klue에서 사용한 품사 분류 기준으로 변경
+# klue의 품사 태깅 기준 : https://aiopen.etri.re.kr/data/001.%ED%98%95%ED%83%9C%EC%86%8C%EB%B6%84%EC%84%9D_%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8.pdf
+def pos_mecab_to_klue(pos,tag):
+    mmd = ['이','그','저','요','고','조','이런','저런','그런','다른','어느','무슨','웬','옛','올','현','구','전','후','래']
+    mmn = ['한','두','세','석','서','네','넉','너','다섯','닷','엿','일곱','여덟','아홉','열','스무','스물','째','제','몇몇','여러']
+    if tag == 'NNBC':
+        tag = 'NNB'
+    elif tag == 'SSO' or tag == 'SSC':
+        tag = 'SS'
+    elif tag == 'SC':
+        tag = 'sp'
+    elif tag =='SY':
+        if '~' in pos: # ~ 인경우 SO
+            tag ='SO'
+        else:
+            tag = 'SW'
+    elif tag == 'MM': # MM 관형사 인경우, 위 참조 자료에 해당하는 예제를 보고 직접 분류
+        if pos in mmd:
+            tag = 'MMD'
+        else:
+            for ex in mmn:
+                if ex in pos:
+                    tag ='MMN'
+                    print(pos,tag)
+                    return (pos, tag)
+            tag = 'MMA'
+    
+    return (pos, tag)
 
 # 한 문장 -> (형태소, 형태소 종류) 분석 결과 리스트
 def parse_mecab_str(tagger, text):
@@ -34,7 +62,8 @@ def pos_to_token(poses, text):
                 tag_set +='+'+tag
                 tok = tok[len(pos):]
             else:
-                poses.insert(0,(pos,tag))
+                tup = pos_mecab_to_klue((pos,tag))
+                poses.insert(0,tup)
                 break
         poslist.append(pos_set.strip())
         
