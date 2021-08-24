@@ -45,7 +45,7 @@ output 폴더 내의 output.txt의 결과물 예시는 다음과 같다
 
 ```
 ## sentence_id	text
-token_id	token	pos	head	dp
+## 칼럼명 : token_id	token	pos	head	dp
 ## 0	'K팝스타3’ 유희열이 홍정희의 탈락에 눈물을 흘렸다.
 1	'K팝스타3’	SS+SL+NNP+SN+SS	2	NP
 2	유희열이	NNP+JKS	6	NP_SBJ
