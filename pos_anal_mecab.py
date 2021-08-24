@@ -15,10 +15,12 @@ def pos_mecab_to_klue(pos,tag):
     mmn = ['한','두','세','석','서','네','넉','너','다섯','닷','엿','일곱','여덟','아홉','열','스무','스물','째','제','몇몇','여러']
     if tag == 'NNBC':
         tag = 'NNB'
+    elif tag == 'UNKNOWN':
+        tag = 'NA'
     elif tag == 'SSO' or tag == 'SSC':
         tag = 'SS'
     elif tag == 'SC':
-        tag = 'sp'
+        tag = 'SP'
     elif tag =='SY':
         if '~' in pos: # ~ 인경우 SO
             tag ='SO'
@@ -61,8 +63,7 @@ def pos_to_token(poses, text):
                 tag_set +='+'+tag
                 tok = tok[len(pos):]
             else:
-                tup = pos_mecab_to_klue(pos,tag)
-                poses.insert(0,tup)
+                poses.insert(0,(pos,tag))
                 break
         poslist.append(pos_set.strip())
         
@@ -86,6 +87,7 @@ def make_file(file):
         if not line: break
         text = line.strip()
         poses = parse_mecab_str(m, text)
+        poses = [pos_mecab_to_klue(p,t) for p,t in poses]
         tokens, poslist, taglist = pos_to_token(poses, text)
         g.write(gids % gid + text+'\n') # write gid with original sentence
         for tid, tok in enumerate(tokens):
