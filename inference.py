@@ -165,7 +165,7 @@ def write_output(klue_dp_dataset, head_preds, type_preds, data_dir):
     sent_id = -1
     with open(os.path.join(output_dir, KLUE_DP_OUTPUT_TEXT), "w", encoding="utf8") as f:
         f.write("## sentence_id\ttext\n")
-        f.write("token_id\ttoken\tpos\thead\tdp\n")
+        f.write("## 칼럼명 : token_id\ttoken\tpos\thead\tdp\n")
 
         for idx, ex in enumerate(dataset):
             if sent_id != ex.sent_id:
