@@ -1,4 +1,4 @@
-# RUN_KLUE_DP
+# Mecab_ko와 KLUE-DP 를 결합한 Korean Dependency Parser 모델
 This code is for running Korean dependency parser using SOTA model and dataset.
 It uses KLUE-DP dataset and dependency parser model with mecab-ko POS(Part-Of-Speech) tagging model.
 
@@ -21,7 +21,7 @@ KLUE-DP 벤치마크 데이터셋과 KLUE-DP 논문에서 제안하는 모델을
 - torch==1.7.0
 - transformers==4.5.1
 
-## 실행방법
+## How to Run
 1. mecab-ko를 설치
    - window에서는 한 번의 명령어로 설치하기 어려우며, 아래의 링크를 참조해 설치.
    - https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/
@@ -40,7 +40,7 @@ KLUE-DP 벤치마크 데이터셋과 KLUE-DP 논문에서 제안하는 모델을
     - output/output.txt 로 결과물 저장.
     
 
-## output
+## Output
 output 폴더 내의 output.txt의 결과물 예시는 다음과 같다
 
 ```
@@ -116,6 +116,35 @@ output 폴더 내의 output.txt의 결과물 예시는 다음과 같다
      "NP_SVJ",
  ]
  
+## Evaluation
+- evaluation dataset : KLUE-DP validation dataset을 이용하여 평가하였다.
+   -  # of total sentences : 2000
+   -  # of total tokens : 22496
+   
+-  Mecab-ko POS tagging 평가
+   - KLUE-DP validation dataset 이용
+   - KLUE에서 korean linguistics Ph.D. 가 직접 주석을 단 POS tagging 과 비교하였다.
+   - 하나의 token은 여러개의 형태소(POS)로 구성된다.
+   - 아래의 POS accuracy는 각 토큰당 tagging결과를 ground truth값을 비교한 정확도이며, 모든 pos tagging의 결과(개수, 숫서, 라벨)가 동일해야 정확하다고 판단하였다.
+   - KLUE-DP 모델에서는 token(띄어쓰기 단위의 어절)의 마지막 POS 값만 이용하므로, Last POS accuracy(각 토큰의 마지막 형태소 분석 결과 정확도)가 이 DP 모델에 유의미한 값이다.
+   - Last POS(per token) accuaracy : 94.03%
+   - POS accuracy: 80.96%
+   
+- 기존 KLUE-DP : KLUE 논문에서 제안하는 대로 manually annotated POS tagging + KLUE-DP 모델
+- Mecab-ko + KLUE-DP : 실사용하기 쉽도록 Mecab-ko를 이용해 POS tagging을 진행하고 KLUE-DP 모델 결합한 모델
+
+- evaluation metrics 은 DP 모델 평가에 흔히 사용되는 UAS(Unlabeled Attachment Score)와 LAS(Labeled Attachment Score)를 이용한다.
+   - UAS : Head(지배소) 예측 정확도
+   - LAS : Head(지배소), Dependency Relation(의존 관계) 쌍의 예측 정확도
+
+|Metrics|기존 KLUE-DP|Mecab-ko + KLUE+DP|
+|:---|:---:|:---:|
+|UAS|94.70%|94.67%|
+|LAS|92.71%|92.67%|
+
+- 기존 모델에 비해 성능차이가 크지 않음을 확인할 수 있다.
+
+
 
 ## 만든이
 bb0711@kaist.ac.kr
